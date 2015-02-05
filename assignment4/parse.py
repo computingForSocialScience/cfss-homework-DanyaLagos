@@ -1,6 +1,11 @@
 import csv
 import sys
+import subprocess 
+import pandas
 import matplotlib as plt
+from collections import Counter
+import numpy as np
+
 
 def readCSV(filename):
     '''Reads the CSV file `filename` and returns a list
@@ -33,21 +38,27 @@ permits = readCSV('permits_hydepark.csv')
 
 def zip_code_barchart(x):
     '''Plots and saves a .jpg bar chart of contractor zipcodes.''' 
-    lines = readCSV('permits_hydepark.csv')   
+    n = len(readCSV("permits_hydepark.csv"))
+    k = readCSV('permits_hydepark.csv')   
     zip_code = []
-    q = [28,35,42,49,56,63,70,77,84]
-    for i in lines: 
-        for p in q: 
+    z = [28,35,42,49,56,63,70,77,84]
+    for i in k: 
+        for p in z: 
             if i[p] != "":
                 zip_code.append(int(i[p][:5]))
 
-    print zip_code #<---- works until here. 11:50PM
-    plt.hist(zip_code, bins=400) ##<----- this line is giving you problems. 11:50PM.
-    plt.title("Zip Codes")
-    plt.xlabel("Contractor Zip Codes")
-    plt.ylabel("Frequency")
+    #print zip_code #<---- works until here. 11:50PM
+    zipcode_counts = Counter(zip_code)
+
+    plt.bar(range(len(zipcode_counts)), zipcode_counts.values(), align='center')
+    plt.xticks(range(len(zipcode_counts)), zipcode_counts.keys())
+    plt.yticks(range(0,6))
+    plt.title("Zip Code Frequency")
+    plt.grid(True)
+    plt.draw()
     plt.savefig("barchart.jpg")
-    plt.show
+    subprocess.call("open barchart.jpg", shell=True)
+    plt.show()
 
 if len(sys.argv) == 1: 
     print get_avg_latlng(permits)
@@ -56,4 +67,3 @@ if sys.argv[1] == "latlong":
     print get_avg_latlng()
 elif sys.argv[1] == "hist":
     zip_code_barchart(permits)
-
