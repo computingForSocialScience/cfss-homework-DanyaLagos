@@ -42,8 +42,8 @@ def zip_code_barchart(x):
             if i[p] != "":
                 zip_code.append(int(i[p][:5]))
 
-    print zip_code
-    plt.hist(zip_code, bins=400)
+    print zip_code #<---- works until here. 11:50PM
+    plt.hist(zip_code, bins=400) ##<----- this line is giving you problems. 11:50PM.
     plt.title("Zip Codes")
     plt.xlabel("Contractor Zip Codes")
     plt.ylabel("Frequency")
