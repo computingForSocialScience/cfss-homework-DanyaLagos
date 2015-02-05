@@ -60,6 +60,8 @@ def zip_code_barchart(x):
     subprocess.call("open barchart.jpg", shell=True)
     plt.show()
 
+    zip_code_barchart('permits_hydepark.csv')
+
 if len(sys.argv) == 1: 
     print get_avg_latlng(permits)
     zip_code_barchart(permits)
