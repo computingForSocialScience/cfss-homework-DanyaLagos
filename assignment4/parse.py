@@ -1,5 +1,6 @@
 import csv
 import sys
+import matplotlib as plt
 
 def readCSV(filename):
     '''Reads the CSV file `filename` and returns a list
@@ -30,9 +31,10 @@ def get_avg_latlng():
 print get_avg_latlng()
 # CHECKED. CONFIRMED THAT IT WORKS: (41.78634532257143, -87.58974489214286)
 
-
+permits = readCSV('permits_hydepark.csv')
 def zip_code_barchart(x):
-    permits = readCSV('permits_hydepark.csv')
+    '''Plots and saves a .jpg bar chart of contractor zipcodes.'''    
+    
     zipcode_list = []
     for i in range (len(x)):
         zipcode = x[i][28]
@@ -42,5 +44,5 @@ def zip_code_barchart(x):
     plt.title("Zip Codes")
     img.save("barchart.jpg")
 
-print zip_code_barchart(permits)
+zip_code_barchart(permits)
 
