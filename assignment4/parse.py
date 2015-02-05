@@ -16,19 +16,23 @@ def readCSV(filename):
 def get_avg_latlng():
     '''Computes the average latitude and longitude of construction permits in HP,
     prints it to the console'''
-    hppermits = readCSV('permits_hydepark.csv')
-    SumLong=0
-    SumLat=0
-    for row in hppermits:
-        SumLong += float(row[127])
-        SumLat += float (row[128])
+    permits = readCSV('permits_hydepark.csv')
+    sumLong=0
+    sumLat=0
+    for row in permits:
+        sumLong += float(row[128])
+        sumLat += float (row[129])
 
         avgLong = sumLong/len(permits)
         avgLat = sumLat/len(permits)
     return avgLong, avgLat
-get_avg_latlng()
+
+print get_avg_latlng()
+# CHECKED. CONFIRMED THAT IT WORKS: (41.78634532257143, -87.58974489214286)
+
 
 def zip_code_barchart(x):
+    permits = readCSV('permits_hydepark.csv')
     zipcode_list = []
     for i in range (len(x)):
         zipcode = x[i][28]
@@ -38,4 +42,5 @@ def zip_code_barchart(x):
     plt.title("Zip Codes")
     img.save("barchart.jpg")
 
-zip_code_barchart(permits)
+print zip_code_barchart(permits)
+
