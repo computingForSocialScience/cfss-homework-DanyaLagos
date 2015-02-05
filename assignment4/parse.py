@@ -18,15 +18,15 @@ def get_avg_latlng():
     '''Computes the average latitude and longitude of construction permits in HP,
     prints it to the console'''
     permits = readCSV('permits_hydepark.csv')
-    sumLong=0
+    sumLng=0
     sumLat=0
     for row in permits:
-        sumLong += float(row[128])
+        sumLng += float(row[128])
         sumLat += float (row[129])
 
-        avgLong = sumLong/len(permits)
+        avgLng = sumLng/len(permits)
         avgLat = sumLat/len(permits)
-    return avgLong, avgLat
+    return avgLng, avgLat
 
 print get_avg_latlng()
 # CHECKED. CONFIRMED THAT IT WORKS: (41.78634532257143, -87.58974489214286)
@@ -35,14 +35,24 @@ permits = readCSV('permits_hydepark.csv')
 def zip_code_barchart(x):
     '''Plots and saves a .jpg bar chart of contractor zipcodes.'''    
     
-    zipcode_list = []
-    for i in range (len(x)):
-        zipcode = x[i][28]
-        zipcode_list.append(zipcode)
+    zip_code = []
+    fq = [28,35,42,49,56,63,70,77,84]
+    for i in lines: 
+        for p in q: 
+            if i[p] != "":
+                zipcode.append(int(i[p][:5]))
 
-    plt.hist(zipcode_list, bins=10)
+    print zip_code
+    plt.hist(zip_code, bins=400)
     plt.title("Zip Codes")
-    img.save("barchart.jpg")
+    plt.xlabel("Contractor Zip Codes")
+    plt.ylabel("Frequency")
+    plt.savefig("barchart.jpg")
+    plt.show
 
-zip_code_barchart(permits)
+
+if sys.argv[1] == "latlong":
+    get_avg_latlng(permits)
+elif sys.argv[1] == "hist":
+    zip_code_barchart(permits)
 
