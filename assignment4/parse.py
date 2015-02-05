@@ -28,7 +28,6 @@ def get_avg_latlng():
         avgLat = sumLat/len(permits)
     return avgLng, avgLat
 
-print get_avg_latlng()
 # CHECKED. CONFIRMED THAT IT WORKS: (41.78634532257143, -87.58974489214286)
 permits = readCSV('permits_hydepark.csv')
 
@@ -50,9 +49,11 @@ def zip_code_barchart(x):
     plt.savefig("barchart.jpg")
     plt.show
 
-
+if len(sys.argv) == 1: 
+    print get_avg_latlng(permits)
+    zip_code_barchart(permits)
 if sys.argv[1] == "latlong":
-    get_avg_latlng(permits)
+    print get_avg_latlng()
 elif sys.argv[1] == "hist":
     zip_code_barchart(permits)
 
