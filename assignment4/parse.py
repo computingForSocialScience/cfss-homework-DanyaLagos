@@ -30,17 +30,17 @@ def get_avg_latlng():
 
 print get_avg_latlng()
 # CHECKED. CONFIRMED THAT IT WORKS: (41.78634532257143, -87.58974489214286)
-
 permits = readCSV('permits_hydepark.csv')
+
 def zip_code_barchart(x):
-    '''Plots and saves a .jpg bar chart of contractor zipcodes.'''    
-    
+    '''Plots and saves a .jpg bar chart of contractor zipcodes.''' 
+    lines = readCSV('permits_hydepark.csv')   
     zip_code = []
-    fq = [28,35,42,49,56,63,70,77,84]
+    q = [28,35,42,49,56,63,70,77,84]
     for i in lines: 
         for p in q: 
             if i[p] != "":
-                zipcode.append(int(i[p][:5]))
+                zip_code.append(int(i[p][:5]))
 
     print zip_code
     plt.hist(zip_code, bins=400)
