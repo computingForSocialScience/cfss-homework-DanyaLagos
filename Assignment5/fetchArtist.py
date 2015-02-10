@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 import sys
 import requests
 import csv
@@ -8,12 +9,14 @@ def fetchArtistId(name):
     """
     name = name.lower().replace('', '%20')
     url ="https://api.spotify.com/v1/search?q=" + name + "&type=artist"
-    req = requests.get(url)
+    r = requests.get(url)
     assert req.ok, 'No record found.'
-    dct = req.json()
-    assert dct.get('artists').get('items'), 'Artists not found.'
-    return dct['artists']['items'][0][id]
+    data = req.json()
+    assert data.get('artists').get('items'), 'Artist not found.'
+    artist_id = data['artists']['items'][0]['id']
+    return artist_id
 
+fetchArtistId('Nickleback')
 
 def fetchArtistInfo(artist_id):
     """Using the Spotify API, takes a string representing the id and
@@ -21,3 +24,7 @@ def fetchArtistInfo(artist_id):
     'id', 'name', and 'popularity'.
     """
     pass 
+
+
+fetchArtistId(sys.argv[1])
+fetchArtistInfo(sys.argv[1]                        )
