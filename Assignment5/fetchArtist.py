@@ -13,7 +13,7 @@ def fetchArtistId(name):
     and return a Spotify artist ID.
     """
     name = name.replace('', '%20')
-    url= "https://api.spotify.com/v1/search?q=" + name + "&type=artist" #forming a readable URL
+    url= "https://api.spotify.com/v1/search?q=" + name + "&type=artist"
     
     req = requests.get(url)
     assert req.ok, 'No record found.'
@@ -29,7 +29,7 @@ def fetchArtistId(name):
 
 #TO ACTIVATE THIS FUNCTION:
 #UNCOMMENT LINES 50, 54 and make sure that LINES 26, 53 are UNCOMMENTED.
-#THEN, ENTER ARTIST ID. EXAMPLE: 100XHjSImMmzeQFUbKuuFm
+#THEN, ENTER ARTIST ID. EXAMPLE: 100XHjSImMmzeQFUbKuuFm 
 
 
 def fetchArtistInfo(artist_id):
