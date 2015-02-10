@@ -10,8 +10,8 @@ def fetchArtistId(name):
     name = name.lower().replace('', '%20')
     url ="https://api.spotify.com/v1/search?q=" + name + "&type=artist"
     r = requests.get(url)
-    assert req.ok, 'No record found.'
-    data = req.json()
+    assert r.ok, 'No record found.'
+    data = r.json()
     assert data.get('artists').get('items'), 'Artist not found.'
     artist_id = data['artists']['items'][0]['id']
     return artist_id
