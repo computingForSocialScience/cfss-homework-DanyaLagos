@@ -47,4 +47,4 @@ def fetchArtistInfo(artist_id):
     return artist_info 
 
 #print fetchArtistId(sys.argv[1])
-print fetchArtistInfo(sys.argv[1])
+#print fetchArtistInfo(sys.argv[1])
