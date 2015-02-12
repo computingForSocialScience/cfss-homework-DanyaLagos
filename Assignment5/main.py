@@ -9,4 +9,15 @@ if __name__ == '__main__':
     print "input artists are ", artist_names
     # YOUR CODE HERE
     
+    artistinfo_list = []
+    albuminfo_list = []
+
+    for artist in artist_names:
+    	artist_id = fetchArtistId(artist)
+    	artist_info = fetchArtistInfo(artist_id)
+    	artistinfo_list.append(artist_info)
+
+
+
+
 
