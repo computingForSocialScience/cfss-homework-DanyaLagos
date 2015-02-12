@@ -9,20 +9,24 @@ def fetchArtistId(name):
     """Using the Spotify API search method, take a string that is the artist's name, 
     and return a Spotify artist ID.
     """
-    name = name.replace('', '%20')
+
     url= "https://api.spotify.com/v1/search?q=" + name + "&type=artist"
     
     req = requests.get(url)
-    assert req.ok, 'No record found.'
     
     data = req.json()
-    assert data.get('artists').get('items'), 'No artist found.'
-    
-    id = data['artists']['items'][0]['uri']
-    id = id.split(':')[2]
-    
-    return(id)
 
+    if not req.ok:
+        print "error: " + data['error']['message']
+        return "error: " +data['error']['message']
+
+
+     
+    if len(data['artists']['items']) > 0:
+        return data['artists']['items'][0]['id']
+    else:
+        return 'error: no artist found'
+    
 
 def fetchArtistInfo(artist_id):
     """Using the Spotify API, takes a string representing the id and
