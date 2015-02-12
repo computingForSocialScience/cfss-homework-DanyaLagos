@@ -37,14 +37,14 @@ def fetchArtistInfo(artist_id):
     data = req.json()
     assert data.get('name'), 'Artist not found.'
 
-    keys = {}
-    keys['followers'] = data['followers']['total']
-    keys['genres'] = data['genres']
-    keys['id'] = data['id']
-    keys['name'] = data['name']
-    keys['popularity'] = data['popularity']
+    artist_info = {}
+    artist_info['followers'] = data['followers']['total']
+    artist_info['genres'] = data['genres']
+    artist_info['id'] = data['id']
+    artist_info['name'] = data['name']
+    artist_info['popularity'] = data['popularity']
     
-    return(keys)
+    return artist_info 
 
 #print fetchArtistId(sys.argv[1])
-#print fetchArtistInfo(sys.argv[1])
+print fetchArtistInfo(sys.argv[1])
