@@ -30,14 +30,14 @@ def fetchAlbumInfo(album_id):
     data = req.json()
     assert data.get('name'), 'No album found.'
 
-    keys = {}
-    keys['artist_id'] = data['artists'][0]['id']
-    keys['album_id'] = album_id
-    keys['name'] = data['name']
-    keys['year'] = data['release_date'][0:4]
-    keys['popularity'] = data['popularity']
+    album_info = {}
+    album_info['artist_id'] = data['artists'][0]['id']
+    album_info['album_id'] = album_id
+    album_info['name'] = data['name']
+    album_info['year'] = data['release_date'][0:4]
+    album_info['popularity'] = data['popularity']
     
-    return keys
+    return album_info
 
 #print fetchAlbumIds("2BTZIqw0ntH9MvilQ3ewNY")
 #print fetchAlbumInfo('3uedCd4LBx3WwkAU70jPRI')
