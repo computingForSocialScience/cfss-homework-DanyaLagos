@@ -40,4 +40,4 @@ def fetchAlbumInfo(album_id):
     return keys
 
 #print fetchAlbumIds("2BTZIqw0ntH9MvilQ3ewNY")
-print fetchAlbumInfo('3uedCd4LBx3WwkAU70jPRI')
+#print fetchAlbumInfo('3uedCd4LBx3WwkAU70jPRI')
