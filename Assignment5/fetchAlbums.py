@@ -6,37 +6,38 @@ def fetchAlbumIds(artist_id):
     returns a list of album IDs in a list
     """
     url = "https://api.spotify.com/v1/artists/" + artist_id + '/albums?market=US&album_type=album'
-    
     req = requests.get(url)
     assert req.ok, 'No record found.'
+    data = req.json()
+    assert data.get('items'), 'No artist found.'
+    albumidlist = []
+    for album in data['items']:
+    	albumidlist.append(album['id'])
+
+    return albumidlist
     
-    dict = req.json()
-    assert dict.get('artists').get('items'), 'No albums found.'
-    
-    return[album]
+
 
 def fetchAlbumInfo(album_id):
     """Using the Spotify API, take an album ID 
     and return a dictionary with keys 'artist_id', 'album_id' 'name', 'year', popularity'
     """
-    url = "https://api.spotify.com/v1/artists/" + artist_id + '/albums?market=US&album_type=album'
+    url = "https://api.spotify.com/v1/albums/" + album_id
 
     req = requests.get(url)
     assert req.ok, 'No record found.'
 
-    dict = req.json()
-    assert dict.get('name'), 'Album not found.'
+    data = req.json()
+    assert data.get('name'), 'No album found.'
 
     keys = {}
-    keys['followers'] = dict['followers']['total']
-    keys['genres'] = dict['genres']
-    keys['id'] = dict['id']
-    keys['name'] = dict['name']
-    keys['popularity'] = dict['popularity']
+    keys['artist_id'] = data['artists'][0]['id']
+    keys['album_id'] = album_id
+    keys['name'] = data['name']
+    keys['year'] = data['release_date'][0:4]
+    keys['popularity'] = data['popularity']
     
-    #print(keys)
-    return(keys)
+    return keys
 
-    pass 
-
-fetchAlbumIds('2BTZIqw0ntH9MvilQ3ewNY')
+#print fetchAlbumIds("2BTZIqw0ntH9MvilQ3ewNY")
+print fetchAlbumInfo('3uedCd4LBx3WwkAU70jPRI')
