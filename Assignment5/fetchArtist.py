@@ -19,7 +19,7 @@ def fetchArtistId(name):
     assert req.ok, 'No record found.'
     
     dict = req.json()
-    assert dict.get('artists').get('items'), 'Artist not found.'
+    assert dict.get('artists').get('items'), 'No artists found.'
     
     id = dict['artists']['items'][0]['uri']
     id = id.split(':')[2]
