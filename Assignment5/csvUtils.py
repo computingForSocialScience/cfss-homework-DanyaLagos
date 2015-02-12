@@ -33,7 +33,7 @@ def writeAlbumsTable(album_info_list):
 
     f = open('albums.csv,' 'w', encoding='utf-8')
     try:
-        f.write(u'ARTIST_ID, ALBUM_ID,ALBUM_NAME,ALBUM_POPULARITY\n')
+        f.write(u'ARTIST_ID, ALBUM_ID,ALBUM_NAME,ALBUM_YEAR,ALBUM_POPULARITY\n')
         for album_info in album_info_list:
             artist_id = album_info['artist_id']
             album_id = album_info['album_id']
