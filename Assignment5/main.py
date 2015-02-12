@@ -17,6 +17,15 @@ if __name__ == '__main__':
     	artist_info = fetchArtistInfo(artist_id)
     	artistinfo_list.append(artist_info)
 
+    	album_id = fetchAlbumIds(artist_id)
+    	for albumid in album_id:
+    		album_info = fetchAlbuminfo(albumid)
+    		albuminfo_list.append(album_info)
+
+    writeArtistsTable(artistinfo_list)
+    writeAlbumsTable(albuminfo_list)
+
+    plotBarChart()
 
 
 
