@@ -40,6 +40,6 @@ def writeAlbumsTable(album_info_list):
             album_name = album_info['name']
             album_year = album_info['year']
             album_popularity = album_info['popularity']
-            f.write(u'%s,"%s",%d,%d\n' % (artist_id, album_id, album_name, album_year, album_popularity))
+            f.write(u'%s,%s,"%s",%s,%s\n' % (artist_id, album_id, album_name, album_year, album_popularity))
     finally:
         f.close()
