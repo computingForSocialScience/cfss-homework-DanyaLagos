@@ -4,9 +4,6 @@ import requests
 import csv
 import json
 
-#TO ACTIVATE THIS FUNCTION:
-#UNCOMMENT LINES 26, 53 and make sure that LINES 50, 54 are COMMENTED.
-#THEN, ENTER NAME OF ARTIST.
 
 def fetchArtistId(name):
     """Using the Spotify API search method, take a string that is the artist's name, 
@@ -18,18 +15,13 @@ def fetchArtistId(name):
     req = requests.get(url)
     assert req.ok, 'No record found.'
     
-    dict = req.json()
-    assert dict.get('artists').get('items'), 'No artist found.'
+    data = req.json()
+    assert data.get('artists').get('items'), 'No artist found.'
     
-    id = dict['artists']['items'][0]['uri']
+    id = data['artists']['items'][0]['uri']
     id = id.split(':')[2]
     
-    #print(id)
     return(id)
-
-#TO ACTIVATE THIS FUNCTION:
-#UNCOMMENT LINES 50, 54 and make sure that LINES 26, 53 are UNCOMMENTED.
-#THEN, ENTER ARTIST ID. EXAMPLE: 100XHjSImMmzeQFUbKuuFm 
 
 
 def fetchArtistInfo(artist_id):
@@ -42,17 +34,17 @@ def fetchArtistInfo(artist_id):
     req = requests.get(url)
     assert req.ok, 'No record found.'
 
-    dict = req.json()
-    assert dict.get('name'), 'Artist not found.'
+    data = req.json()
+    assert data.get('name'), 'Artist not found.'
 
     keys = {}
-    keys['followers'] = dict['followers']['total']
-    keys['genres'] = dict['genres']
-    keys['id'] = dict['id']
-    keys['name'] = dict['name']
-    keys['popularity'] = dict['popularity']
-    #print(keys)
+    keys['followers'] = data['followers']['total']
+    keys['genres'] = data['genres']
+    keys['id'] = data['id']
+    keys['name'] = data['name']
+    keys['popularity'] = data['popularity']
+    
     return(keys)
 
-#fetchArtistId(sys.argv[1])
-#fetchArtistInfo(sys.argv[1])
+#print fetchArtistId(sys.argv[1])
+#print fetchArtistInfo(sys.argv[1])
