@@ -12,11 +12,11 @@ def writeArtistsTable(artist_info_list):
     f = open('artists.csv', 'w', encoding='utf-8')
     try:
         f.write(u'ARTIST_ID,ARTIST_NAME,ARTIST_FOLLOWERS,ARTIST_POPULARITY\n')
-        for keys in artist_info_list:
-            artist_id = keys['id']
-            artist_name = keys['name']
-            artist_followers = keys['followers']
-            artist_popularity = keys['popularity']
+        for artist_info in artist_info_list:
+            artist_id = artist_info['id']
+            artist_name = artist_info['name']
+            artist_followers = artist_info['followers']
+            artist_popularity = artist_info['popularity']
             f.write(u'%s,"%s",%d,%d\n' % (artist_id, artist_name, artist_followers, artist_popularity))
     finally:
         f.close()
@@ -34,9 +34,12 @@ def writeAlbumsTable(album_info_list):
     f = open('albums.csv,' 'w', encoding='utf-8')
     try:
         f.write(u'ARTIST_ID, ALBUM_ID,ALBUM_NAME,ALBUM_POPULARITY\n')
-        for keys in album_info_list:
-            artist_id = keys['artist_id']
-            album_id = keys['album_id']
-            name = keys['name']
-            year = keys['year']
-            popularity = keys['popularity']
+        for album_info in album_info_list:
+            artist_id = album_info['artist_id']
+            album_id = album_info['album_id']
+            album_name = album_info['name']
+            album_year = album_info['year']
+            album_popularity = album_info['popularity']
+            f.write(u'%s,"%s",%d,%d\n' % (artist_id, album_id, album_name, album_year, album_popularity))
+    finally:
+        f.close()
