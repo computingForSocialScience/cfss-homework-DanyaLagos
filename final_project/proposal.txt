@@ -1,0 +1,7 @@
+Danya Lagos
+
+WHAT - A description of the project
+
+WHY - Justification for how it helps me solve a substantial research problem
+
+HOW - Outline for computational steps involved
