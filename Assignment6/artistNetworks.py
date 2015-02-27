@@ -9,13 +9,13 @@ def getRelatedartists(artistID):
 	data = req.json()
 	assert data.get('artists'), 'No artist found.'
 
-	relatedartist_List = [] #Building dictionary that will be returned.
+	relatedartist_List = [] 
 	for relatedartist in data['artists']:
 		relatedartist_List.append(relatedartist['id'])
 
 	return relatedartist_List
 
-print getRelatedartists("0OdUWJ0sBjDrqHygGUXeCF")
+#print getRelatedartists("0OdUWJ0sBjDrqHygGUXeCF")
 
 
 '''Function I.2:
@@ -25,7 +25,19 @@ related artists.
 Make sure your list of edges only lists each edge once, with no duplicates.'''
 
 def getDepthEdges(artistID, depth):
-	pass 
+	url = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists"
+	req = requests.get(url)
+	assert req.ok, 'No record found.'
+	data = req.json()
+	assert data.get('artists'), 'No artist found.'
+
+	directedPairs = [] #This is the list where the other two lists should be combined.
+
+	return directedPairs 
+	
+
+
+print getDepthEdges("0OdUWJ0sBjDrqHygGUXeCF", 2)
 
 '''Function I.3:
 This function takes the exact same arguments as getDepthEdges(), 
