@@ -25,15 +25,23 @@ related artists.
 Make sure your list of edges only lists each edge once, with no duplicates.'''
 
 def getDepthEdges(artistID, depth):
-	url = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists"
-	req = requests.get(url)
-	assert req.ok, 'No record found.'
-	data = req.json()
-	assert data.get('artists'), 'No artist found.'
 
-	directedPairs = [] #This is the list where the other two lists should be combined.
+	directedPairs = [] # This is the list where the other two lists should be combined.
+	directedPairs_checked = [] #Then they should go to this one after they are checked.
+	relatedArtists = []
+	relatedArtists.append(artistID)
 
-	return directedPairs 
+	for i in range(depth):
+		for relatedartist in relatedArtists:
+			newartists = getRelatedartists(relatedartist)
+			for newartist in newartists:
+				directedPairs.append((relatedartist, newartist))
+		relatedArtists = newartists
+	for tple in directedPairs: 
+		if tple not in directedPairs_checked:
+			directedPairs_checked.append(tple)
+
+	return directedPairs_checked
 	
 
 
