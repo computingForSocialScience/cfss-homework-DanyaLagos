@@ -20,3 +20,7 @@ def readEdgeList(filename):
 
 print readEdgeList('filename.csv')
 
+'''Function II.2 - '''
+
+def degree(edgeList, in_or_out):
+	EdgeList = readEdgeList(EdgeList)
