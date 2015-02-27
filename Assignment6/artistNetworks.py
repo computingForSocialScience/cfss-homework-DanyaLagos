@@ -1,5 +1,6 @@
 import requests
 import pandas 
+import csv
 '''Function I.1:
 This function takes an artist ID as its only argument 
 and returns a list of related artists IDs.'''
@@ -57,7 +58,7 @@ def getEdgeList(artistID, depth):
 	EdgeList = getDepthEdges(artistID, depth)
 	return pandas.DataFrame(EdgeList)
 
-print getEdgeList("0OdUWJ0sBjDrqHygGUXeCF", 2)
+#print getEdgeList("0OdUWJ0sBjDrqHygGUXeCF", 2)
 
 '''Function 1.4: This function takes three arguments: 
 an artist ID, a depth value, and a filename for output. 
@@ -65,4 +66,7 @@ This function should generate an edge list based on the parameters
 artistId and depth, and write that to a CSV file specified by the 
 filename parameter. '''
 def writeEdgeList(artistID, depth, filename):
-	pass 
+	EdgeList = getEdgeList(artistID, depth)
+	EdgeList.to_csv(filename, index=False)
+
+writeEdgeList ("0OdUWJ0sBjDrqHygGUXeCF", 2, "filename.csv")
