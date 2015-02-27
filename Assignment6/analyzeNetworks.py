@@ -1,0 +1,12 @@
+import requests
+import pandads 
+import csv 
+
+"""Function II.1 - takes one argument (a filename) and reads an edge list from a CSV 
+with that filename, using the read_csv() function of Pandas. 
+It should return a Pandas DataFrame with one row for each edge. 
+The function should also make sure that the CSV it reads contains only two columns. 
+If it contains more than two columns, print a warning and return a data frame that contains 
+only the first two columns."""
+
+def readEdgeList(filename)
