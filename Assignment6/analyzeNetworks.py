@@ -1,6 +1,7 @@
 import requests
 import pandas 
 import csv 
+import networkx
 
 """Function II.1 - takes one argument (a filename) and reads an edge list from a CSV 
 with that filename, using the read_csv() function of Pandas. 
@@ -30,4 +31,23 @@ def degree(EdgeList, in_or_out):
 	elif in_or_out == 'in':
 		return EdgeList['artist2'].value_counts()
 
-print degree(readEdgeList('filename.csv'), 'in')
+#print degree(readEdgeList('filename.csv'), 'in')
+
+'''Function II.3 - takes two data frames as arguments and combines them into one long edge list'''
+
+def combineEdgeLists(edgeList1, edgeList2): 
+	initialEdgeList = pandas.concat([edgelist1, edgelist2])
+	finalEdgeList = initialEdgeList.drop_duplicates()
+	return finalEdgeList
+
+'''Function II.4 - reates a NetworkX Digraph (directed graph) 
+from of an edge list in a pandas data frame.'''
+
+def pandasToNetworkX(EdgeList):
+	starterlist = EdgeList.to_records(index=False)
+	digraph = networkx.DiGraph()
+	for artist1,artist2 in starterlist:
+		digraph.add_edge(artist1,artist2)
+	return digraph 
+
+pandasToNetworkX(readEdgeList('filename.csv'))
