@@ -18,9 +18,16 @@ def readEdgeList(filename):
 	else:
 		return pandas.DataFrame(EdgeList)
 
-print readEdgeList('filename.csv')
+#print readEdgeList('filename.csv')
 
-'''Function II.2 - '''
+'''Function II.2 - uses the value_counts() method of Pandas data frame columns 
+to return the in-degree or out-degree (as specified by the second argument in_or_out) 
+for all nodes in a given edge list.'''
 
-def degree(edgeList, in_or_out):
-	EdgeList = readEdgeList(EdgeList)
+def degree(EdgeList, in_or_out):
+	if in_or_out == 'out':
+		return EdgeList['artist1'].value_counts()
+	elif in_or_out == 'in':
+		return EdgeList['artist2'].value_counts()
+
+print degree(readEdgeList('filename.csv'), 'in')
