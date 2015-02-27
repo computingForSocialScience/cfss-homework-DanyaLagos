@@ -1,4 +1,5 @@
 import requests
+import pandas 
 '''Function I.1:
 This function takes an artist ID as its only argument 
 and returns a list of related artists IDs.'''
@@ -42,10 +43,8 @@ def getDepthEdges(artistID, depth):
 			directedPairs_checked.append(tple)
 
 	return directedPairs_checked
-	
 
-
-print getDepthEdges("0OdUWJ0sBjDrqHygGUXeCF", 2)
+#print getDepthEdges("0OdUWJ0sBjDrqHygGUXeCF", 2)
 
 '''Function I.3:
 This function takes the exact same arguments as getDepthEdges(), 
@@ -55,7 +54,10 @@ a data frame with 305 rows and two columns.
 This should be a simple function that just calls getDepthEdges() 
 and then loads the results into a data frame.'''
 def getEdgeList(artistID, depth):
-	pass
+	EdgeList = getDepthEdges(artistID, depth)
+	return pandas.DataFrame(EdgeList)
+
+print getEdgeList("0OdUWJ0sBjDrqHygGUXeCF", 2)
 
 '''Function 1.4: This function takes three arguments: 
 an artist ID, a depth value, and a filename for output. 
