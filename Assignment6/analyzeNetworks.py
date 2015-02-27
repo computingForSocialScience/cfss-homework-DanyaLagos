@@ -2,6 +2,7 @@ import requests
 import pandas 
 import csv 
 import networkx
+import numpy
 
 """Function II.1 - takes one argument (a filename) and reads an edge list from a CSV 
 with that filename, using the read_csv() function of Pandas. 
@@ -50,4 +51,15 @@ def pandasToNetworkX(EdgeList):
 		digraph.add_edge(artist1,artist2)
 	return digraph 
 
-pandasToNetworkX(readEdgeList('filename.csv'))
+#pandasToNetworkX(readEdgeList('filename.csv'))
+
+'''Function II.5 - picks a random node from a related-artists network 
+that is biased toward picking more central nodes over those on the network's periphery. '''
+
+def randomCentralNote(inputDiGraph):
+
+	dictionary = networkx.eigenvector_centrality(inputDiGraph)
+	for key in dictionary:
+		newdictionary[key] = dictionary[key]/float(sum(dictionary.values()))
+		node = numpy.random.choice(newdictionary.keys(), p=newdictionary.values())
+	return node
