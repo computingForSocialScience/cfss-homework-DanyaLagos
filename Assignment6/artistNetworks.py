@@ -35,7 +35,7 @@ def getDepthEdges(artistID, depth):
 
 	for i in range(depth):
 		for relatedartist in relatedArtists:
-			newartists = getRelatedartists(relatedartist)
+			newartists = getRelatedArtists(relatedartist)
 			for newartist in newartists:
 				directedPairs.append((relatedartist, newartist))
 		relatedArtists = newartists
