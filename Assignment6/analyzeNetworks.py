@@ -37,7 +37,7 @@ def degree(EdgeList, in_or_out):
 '''Function II.3 - takes two data frames as arguments and combines them into one long edge list'''
 
 def combineEdgeLists(edgeList1, edgeList2): 
-	initialEdgeList = pandas.concat([edgelist1, edgelist2])
+	initialEdgeList = pandas.concat([edgeList1, edgeList2])
 	finalEdgeList = initialEdgeList.drop_duplicates()
 	return finalEdgeList
 
@@ -56,7 +56,7 @@ def pandasToNetworkX(EdgeList):
 '''Function II.5 - picks a random node from a related-artists network 
 that is biased toward picking more central nodes over those on the network's periphery. '''
 
-def randomCentralNote(inputDiGraph):
+def randomCentralNode(inputDiGraph):
 
 	dictionary = networkx.eigenvector_centrality(inputDiGraph)
 	for key in dictionary:
