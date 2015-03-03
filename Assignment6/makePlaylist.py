@@ -26,8 +26,7 @@ for i in range(len(artistids)):
 
 mergedlists = edgelists[0]
 for i in range (len(edgelists)):
-	mergedlists = combineEdgeLists(mergedlists, edgelists[i]) #bugcheck!
-mergedlists.columns = ['artist1', 'artist2']
+	mergedlists = combineEdgeLists(mergedlists, edgelists[i]) 
 
 g = pandasToNetworkX(mergedlists)
 
@@ -41,7 +40,7 @@ albumlist = []
 for artistID in sample30:
 	name = fetchArtistInfo(artistID)['name']
 	nameslist.append(name)
-	albumids = fetchAlbumIDs(artistID)
+	albumids = fetchAlbumIds(artistID)
 	randomalbum = (random.choice(albumids))
 
 randomtracks = []
@@ -59,7 +58,7 @@ for album in albumlist:
 print randomtracks 
 
 f = open('playlist.csv', 'w')
-f.write(u'artistname, album name, track name\n')
+f.write(u'artist name, album name, track name\n')
 for i in range(len(randomtracks)):
 	artistname = nameslist[i]
 	albumname = albumlist[i][0]
