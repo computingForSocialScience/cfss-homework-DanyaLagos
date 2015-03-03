@@ -57,11 +57,13 @@ for album in albumlist:
 
 print randomtracks 
 
-f = open('playlist.csv', 'w')
-f.write(u'artist name, album name, track name\n')
-for i in range(len(randomtracks)):
-	artistname = nameslist[i]
-	albumname = albumlist[i][0]
-	trackname = randomtracks[i]
-	f.write(('"' + artistName + '"' + ',' + '"' + albumName + '"' + ',' + '"' + trackName + '"' + '\n'))
-f.close()
+f = open('playlist.csv', 'w', encoding='utf-8')
+try: 
+	f.write(u'artist name, album name, track name\n')
+	for i in range(len(randomtracks)):
+		artistname = nameslist[i]
+		albumname = albumlist[i][0]
+		trackname = randomtracks[i]
+		f.write(u'"%s","%s","%s"\n' % (artist_name,album_name,track_name))
+finally:
+	f.close()
