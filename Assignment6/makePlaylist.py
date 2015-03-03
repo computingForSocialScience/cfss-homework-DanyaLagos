@@ -26,14 +26,14 @@ for i in range(len(artistids)):
 
 mergedlists = edgelists[0]
 for i in range (len(edgelists)):
-	mergedlists = combineEdgeLists(mergedlists, edgelists[i])
+	mergedlists = combineEdgeLists(mergedlists, edgelists[i]) #bugcheck!
 mergedlists.columns = ['artist1', 'artist2']
 
-g = pandasToNetworkX(medgedlists)
+g = pandasToNetworkX(mergedlists)
 
 sample30 = []
 for i in range(30):
-	sample30.append(randomCentralNote(g))
+	sample30.append(randomCentralNode(g))
 
 nameslist = []
 albumlist = []
