@@ -7,6 +7,7 @@ import requests
 from io import open
 from artistNetworks import *
 from analyzeNetworks import *
+sys.path.append('../Assignment5/')
 from fetchArtist import *
 from fetchAlbums import *
 
@@ -38,6 +39,30 @@ nameslist = []
 albumlist = []
 
 for artistID in sample30:
-	name = fetchArtistInfo(artistId)['name']
-	
+	name = fetchArtistInfo(artistID)['name']
+	nameslist.append(name)
+	albumids = fetchAlbumIDs(artistID)
+	randomalbum = (random.choice(albumids))
 
+randomtracks = []
+for album in albumlist:
+	url = "https://api.spotify.com/v1/albums/" + album[1] + "/tracks"
+	req = requests.get(url)
+	data = req.json().get('items')
+	randomlist = []
+	for i in range(len(data)):
+		tracknamestring =  data[i]['name']
+		randomlist.append(tracknamestring)
+		getrandomtrack = (random.choice(randomlist))
+	randomtracks.append(getrandomtrack)
+
+print randomtracks 
+
+f = open('playlist.csv', 'w')
+f.write(u'artistname, album name, track name\n')
+for i in range(len(randomtracks)):
+	artistname = nameslist[i]
+	albumname = albumlist[i][0]
+	trackname = randomtracks[i]
+	f.write(('"' + artistName + '"' + ',' + '"' + albumName + '"' + ',' + '"' + trackName + '"' + '\n'))
+f.close()
