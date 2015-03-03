@@ -4,7 +4,7 @@ import csv
 '''Function I.1:
 This function takes an artist ID as its only argument 
 and returns a list of related artists IDs.'''
-def getRelatedartists(artistID):
+def getRelatedArtists(artistID):
 	url = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists"
 	req = requests.get(url)
 	assert req.ok, 'No record found.'
