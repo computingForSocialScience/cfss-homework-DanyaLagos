@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
 artistids = []
 for name in artists:
-	artistID = fetchArtistID(name)
+	artistID = fetchArtistId(name)
 	artistids.append(artistID)
 
 edgelists = []
