@@ -58,8 +58,8 @@ def pandasToNetworkX(EdgeList):
 that is biased toward picking more central nodes over those on the network's periphery. '''
 
 def randomCentralNode(inputDiGraph):
-	dictionary = networkx.eigenvector_centrality(inputDiGraph)
-	for key in dictionary:
-		newdictionary[key] = dictionary[key]/float(sum(dictionary.values()))
-		node = numpy.random.choice(newdictionary.keys(), p=newdictionary.values())
+	dct = networkx.eigenvector_centrality(inputDiGraph)
+	dct_sum = float(sum(dct.values()))
+	nc_dct = dict((k, v / dct_sum) for k, v in dct.items())
+	node = numpy.random.choice(nc_dct.keys(), p=nc_dct.values())
 	return node
