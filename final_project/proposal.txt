@@ -1,7 +1,22 @@
 Danya Lagos
 
-WHAT - A description of the project
+1. WHAT - A description of the project
 
-WHY - Justification for how it helps me solve a substantial research problem
+For my final project, I would like to build a model for analyzing the networks and strength of ties between people who communicate with each other, similarly to Onnela 2007. However, instead of cell phone data, I would like to build it to gather data from a technology that has not been released yet - other than to developers - which is Apple's new haptic messaging system for the iWatch. Because it has not been released to people yet, what I want to do is develop a program in advance of the release that will be able to be used once people start using haptic messaging, or at least, for the purposes of this class, build a framework that processes this data that I could continue working on in the summer. 
 
-HOW - Outline for computational steps involved
+2. WHY - Justification for how it helps me solve a substantial research problem
+
+The model used in Onnela's analysis depends upon spoken communication, and focuses on length of interaction. I would like to use Apple's haptic messaging to conduct the first large scale study of touch-based communication across networks, which could turn up different results than voice-based or even text-based speech.
+
+3. HOW - Outline for computational steps involved
+
+A. Gather data on the following categories and subcategories from each haptic "message" sent:
+- Identifying tracking number for each recipient and sender.
+- Sex of Recipient and Sex of Sender
+- Location Where Message Sent
+- Location Where Message Received
+- Time When Message Sent
+- Time When Message Received
+- Tracking Number, sender/recipient,  and frequency of messages sent and received by each person.
+
+B. Map it on a network map.
