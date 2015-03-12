@@ -38,8 +38,15 @@ def createNewPlaylist(artistname):
         trackName VARCHAR(500) CHARACTER SET utf8
         );
     ''')
-    cursor.execute = 
 
+    artistID = fetchArtistId(artistname)
+    edge_list = getEdgeList (artist_id, 2)
+    digraph = pandasToNetworkX(EdgeList)
+
+    random_artists = []
+    for i in range(30): 
+        random_artist = randomCentralNote(digraph)
+        random_artists.append(random_artist)
 
 
 @app.route('/')
