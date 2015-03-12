@@ -85,6 +85,13 @@ def make_index_resp():
 
 @app.route('/playlists/')
 def make_playlists_resp():
+# THIS IS WHERE PART 2 is going to take place. 
+'''Add to the make_playlists_resp function so that it fetches all of the playlists 
+and playlist IDs from your database and stores them in a variable called playlists. 
+The call to the render_template function specifies that you will make this variable 
+available to the playlists.html template.'''
+    cursor.execute("SELECT * FROM playlists;")
+    playlists = cursor.fetchall()
     return render_template('playlists.html',playlists=playlists)
 
 
