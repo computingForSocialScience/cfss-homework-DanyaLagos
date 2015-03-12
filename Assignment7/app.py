@@ -24,6 +24,21 @@ app = Flask(__name__)
 ## THIS IS THE FIRST FUNCTION OF THE ASSIGNMENT
 def createNewPlaylist(artistname):
 
+    artistID = fetchArtistId(artistname)
+    edge_list = getEdgeList (artist_id, 2)
+    digraph = pandasToNetworkX(edge_list)
+    counter = 1
+
+    random_artists = []
+    while counter <= 30:
+        random_artist = randomCentralNote(digraph)
+        if getRandomAlbum(randomArtist) == "":
+            continue
+        random_artists.append(random_artist)
+        counter += 1
+        
+
+
     cursor.execute ('''CREATE TABLE IF NOT EXISTS playlists (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         rootAritst VARCHAR(500) CHARACTER SET utf8
@@ -41,14 +56,6 @@ def createNewPlaylist(artistname):
     cursor.execute ('''INSERT INTO playlists (rootArtist) VALUES (%s);   
     ''')
 
-    artistID = fetchArtistId(artistname)
-    edge_list = getEdgeList (artist_id, 2)
-    digraph = pandasToNetworkX(EdgeList)
-
-    random_artists = []
-    for i in range(30): 
-        random_artist = randomCentralNote(digraph)
-        random_artists.append(random_artist)
 
     artist_names = []
     album_list = []
