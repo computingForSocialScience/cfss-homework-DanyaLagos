@@ -17,12 +17,29 @@ host="localhost"
 user="root"
 passwd=""
 db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8')
+cursor = db.cursor()
 
 app = Flask(__name__)
 
 ## THIS IS THE FIRST FUNCTION OF THE ASSIGNMENT
-def createNewPlaylist(name):
-    
+def createNewPlaylist(artistname):
+
+    cursor.execute ('''CREATE TABLE IF NOT EXISTS playlists (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        rootAritst VARCHAR(500) CHARACTER SET utf8
+        );
+    ''')
+    cursor.execute = ('''CREATE TABLE IF NOT EXISTS songs (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        playlistId INTEGER, 
+        songOrder INTEGER, 
+        artistName VARCHAR(500) CHARACTER SET utf8,
+        albumName VARCHAR(500) CHARACTER SET utf8,
+        trackName VARCHAR(500) CHARACTER SET utf8
+        );
+    ''')
+    cursor.execute = 
+
 
 
 @app.route('/')
