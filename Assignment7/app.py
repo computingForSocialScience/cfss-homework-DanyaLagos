@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
 
+import sys
+import io
+import random
+import networkx
+import pandas
+
+from artistNetworks import * 
+from analyzeNetworks import *
+from fetchArtist import *
+from fetchAlbums import *
+
 dbname="playlists"
 host="localhost"
 user="root"
@@ -8,6 +19,10 @@ passwd=""
 db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8')
 
 app = Flask(__name__)
+
+## THIS IS THE FIRST FUNCTION OF THE ASSIGNMENT
+def createNewPlaylist(name):
+    
 
 
 @app.route('/')
