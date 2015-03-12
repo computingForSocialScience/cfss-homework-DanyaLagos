@@ -113,7 +113,7 @@ def add_playlist():
     elif request.method == 'POST':
         # this code executes when someone fills out the form
         artistName = request.form['artistName']
-        # YOUR CODE HERE
+        createNewPlaylist(artistName)
         return(redirect("/playlists/"))
 
 
