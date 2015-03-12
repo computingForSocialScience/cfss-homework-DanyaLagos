@@ -38,6 +38,8 @@ def createNewPlaylist(artistname):
         trackName VARCHAR(500) CHARACTER SET utf8
         );
     ''')
+    cursor.execute ('''INSERT INTO playlists (rootArtist) VALUES (%s);   
+    ''')
 
     artistID = fetchArtistId(artistname)
     edge_list = getEdgeList (artist_id, 2)
@@ -47,6 +49,18 @@ def createNewPlaylist(artistname):
     for i in range(30): 
         random_artist = randomCentralNote(digraph)
         random_artists.append(random_artist)
+
+    artist_names = []
+    album_list = []
+    for artist_id in random_artists:
+        artist = fetchArtistInfo(artist_id)
+        artist_name = artist['name']
+        artist_names.append(artist_name)
+        album_id_list_ = fetchAlbumIds(artist_id)
+
+        if album_id_list == []:
+            print "Error: Empty Spotify 'none type' album id for" artist_name, ". Pass and continue."
+            continue 
 
 
 @app.route('/')
