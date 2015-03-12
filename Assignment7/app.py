@@ -36,7 +36,7 @@ def createNewPlaylist(artistname):
             continue
         random_artists.append(random_artist)
         counter += 1
-        
+
 
 
     cursor.execute ('''CREATE TABLE IF NOT EXISTS playlists (
@@ -56,19 +56,25 @@ def createNewPlaylist(artistname):
     cursor.execute ('''INSERT INTO playlists (rootArtist) VALUES (%s);   
     ''')
 
+    latestID = cursor.lastrowid
 
-    artist_names = []
-    album_list = []
-    for artist_id in random_artists:
-        artist = fetchArtistInfo(artist_id)
-        artist_name = artist['name']
-        artist_names.append(artist_name)
-        album_id_list_ = fetchAlbumIds(artist_id)
+    songOrder = 1
+    playlist = []
+    for songArtist in randomArtistList:
+        albumID, albumName = getRandomAlbum(songArtist)
+        artistTrack = getRandomTrack(albumID)
+        artistName = fetchArtistInfo(songArtist)
 
-        if album_id_list == []:
-            print "Error: Empty Spotify 'none type' album id for" artist_name, ". Pass and continue."
-            continue 
+        line = (latestID, songOrder, artistName, albumName, artistTrack)
 
+        songOrder += 1
+        playlist.append(line
+
+    cursor.execute = ('''INSERT INTO songs (
+        playlistID, songOrder, ArtistName, albumName, trackName) 
+        VALUES (%s, %s, %s, %s, %s)
+        ''')
+    db.commit()
 
 @app.route('/')
 def make_index_resp():
