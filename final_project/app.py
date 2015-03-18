@@ -38,11 +38,11 @@ class Visit(db.Model):
     __tablename__ = 'tracking_visit'
 
     id = db.Column(db.Integer, primary_key=True)
-    browser = db.Column(db.String)
-    date = db.Column(db.String)
-    event = db.Column(db.String)
+    name = db.Column(db.String)
+    preferred_gender_pronouns = db.Column(db.String)
+    position = db.Column(db.String)
     url = db.Column(db.String)
-    ip_address = db.Column(db.String)
+    city = db.Column(db.String)
     site_id = db.Column(db.Integer, db.ForeignKey('tracking_site.id'))
 
     def __repr__(self):
@@ -50,11 +50,11 @@ class Visit(db.Model):
 
 
 class VisitForm(Form):
-    browser = fields.StringField()
-    date = fields.StringField()
-    event = fields.StringField()
+    name = fields.StringField()
+    preferred_gender_pronouns = fields.StringField()
+    position = fields.StringField()
     url = fields.StringField()
-    ip_address = fields.StringField("IP Address")
+    city = fields.StringField("City")
     site = QuerySelectField(query_factory=Site.query.all)
 
 
