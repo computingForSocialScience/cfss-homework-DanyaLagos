@@ -51,7 +51,7 @@ class Visit(db.Model):
 
 class VisitForm(Form):
     browser = fields.StringField()
-    date = fields.String()
+    date = fields.StringField()
     event = fields.StringField()
     url = fields.StringField()
     ip_address = fields.StringField("IP Address")
