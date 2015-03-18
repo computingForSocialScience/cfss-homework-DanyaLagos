@@ -1,41 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-import pymysql
+from os.path import abspath, dirname, join
+from flask import flash, Flask, Markup, redirect, render_template, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.wtf import Form
+from wtforms import fields
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
+_cwd = dirname(abspath(__file__))
 
-dbname="groceries"
-host="localhost"
-user="root"
-passwd=""
-db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8')
-cursor = db.cursor()
+SECRET_KEY = 'flask-session-insecure-secret-key'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + join(_cwd, 'flask-tracking.db')
+SQLALCHEMY_ECHO = True
+WTF_CSRF_SECRET_KEY = 'this-should-be-more-random'
+
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 
-class Store(db.Model):
-	__tablename__='stores'
-	storeName = db.Column(db.String(255))
-	zipCode = db.Column(db.String(5))
-	communityName = db.Column(db.String(255))
-	latitude = db.Column(db.Integer)
-	longitude = db.Column(db.Integer)
+db = SQLAlchemy(app)
 
 
-@app.route('/grocerystores/', methods=['GET'])
-def grocerystores():
-	if request.method == 'GET':
-		results = Store.query.limit(10).offset(0).all()
-
-		json_results = []
-		for results in results:
-			d = {'storeName': result.storeName,
-				'zipCode': result.zipCode, 
-				'communityName': result.communityName,
-				'latitude': result.latitude,
-				'longitude': result.longitude}
-			json_results.append(d)
-		return jsonify(items=json_results)
-
-if __name__ == '__main__':
-    app.debug=True
+if __name__ == "__main__":
+    app.debug = True
+    db.create_all()
     app.run()
