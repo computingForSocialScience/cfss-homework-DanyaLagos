@@ -39,19 +39,19 @@ class Visit(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    preferred_gender_pronouns = db.Column(db.String)
+    pronouns = db.Column(db.String)
     position = db.Column(db.String)
     url = db.Column(db.String)
     city = db.Column(db.String)
     site_id = db.Column(db.Integer, db.ForeignKey('tracking_site.id'))
 
     def __repr__(self):
-        return '<Visit %r - %r>' % (self.url, self.date)
+        return '<Visit %r - %r>' % (self.name, self.url)
 
 
 class VisitForm(Form):
     name = fields.StringField()
-    preferred_gender_pronouns = fields.StringField()
+    pronouns = fields.StringField()
     position = fields.StringField()
     url = fields.StringField()
     city = fields.StringField("City")
