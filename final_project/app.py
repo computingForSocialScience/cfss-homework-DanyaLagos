@@ -19,10 +19,9 @@ class LoginForm(Form):
 	password = PasswordField('Password')
 form = LoginForm()
 
-def makeregistration(userName)
 
+app = Flask(__name__)
 
-app = Flask(__name__) #This creates the app object. 
 
 @app.route('/') #Creates the text of a web page. 
 def make_index_resp():
