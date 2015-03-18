@@ -1,8 +1,22 @@
-<html>
-<head><title>Hi5 Connect</title></head>
-<body bgcolor="F5D04C">
-<h4>welcome to Hi5 Connect:</h4>
+{% extends "layout.html" %}
+{% import "helpers/forms.html" as forms %}
+{% block title %}Welcome to Flask Tracking!{% endblock %}
+{% block content %}
+{{ super() }}
+<form action="/site" method="POST">
+<fieldset>
+<legend>Add A Site</legend>
+{{ forms.render(site_form) }}
+<p><input type="Submit" value="Save Site"></p>
+</fieldset>
+</form>
 
-<a href=register>Register here!</a> 
 
-</html>
+<form action="/visit" method="POST">
+<fieldset>
+<legend>Add A Visit</legend>
+{{ forms.render(visit_form) }}
+<p><input type="Submit" value="Save Visit"></p>
+</fieldset>
+</form>
+{% endblock content %}
