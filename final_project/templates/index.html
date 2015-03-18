@@ -1,26 +1,29 @@
 {% extends "layout.html" %}
 {% import "helpers/forms.html" as forms %}
-{% block title %}Workers Like Us: A Directory of Trans and Genderqueer Independent Contractors{% endblock %}
+{% block title %}ShopTrans*: A Directory of Trans* and Genderqueer Owned Businesses{% endblock %}
 {% block content %}
 {{ super() }}
 
 <body>
-"Workers Like Us" is a voluntary directory of transgender and genderqueer independent contractors where you can list your name, contact information, and skills that you have so that people seeking to partner with or hire transgender and genderqueer workers can find you and contact you! Your contributions will also help give researchers conducting research on transgender employment trends to get a better picture of who in our community is working as independent contractors and what skillsets are most prevalent! Your participation and submissions to this directory will be public, and implies that you have read and consent to being listed and having this information shared with researchers and community partners.
+"Workers Like Us" is a voluntary directory of transgender and genderqueer owned businesses where you can list your name, contact information, and services/goods that you have to offer so that people seeking to partner with or hire transgender and genderqueer busineses can find you and contact you! Your contributions will also help give researchers conducting research on transgender employment trends to get a better picture of who in our community is running businesses and what skillsets, products, and services are most prevalent! Your participation and submissions to this directory will be public, and implies that you have read and consent to being listed and having this information shared with researchers and community partners.
 <p>
 
-<form action="/visit" method="POST">
-<fieldset>
-<legend>Add A Visit</legend>
-{{ forms.render(visit_form) }}
-<p><input type="Submit" value="Save Visit"></p>
-</fieldset>
-</form>
 
 <form action="/site" method="POST">
 <fieldset>
-<legend>Is your industry not listed? Add it to the directory here first, click Submit, and then refresh - your industry should then be listed!</legend>
+<legend>Step 1: Only if you haven't done this already, register the URL of your company's website or profile so that we can find you! This will also allow multiple employees and partners from your business to register under your company and to form networks! If your company does not have a website, just type out the name of your company in the field. </legend>
 {{ forms.render(site_form) }}
-<p><input type="Submit" value="Submit."></p>
+<p><input type="Submit" value="Submit"></p>
 </fieldset>
 </form>
+
+<form action="/visit" method="POST">
+<fieldset>
+<legend>Register here!</legend>
+{{ forms.render(visit_form) }}
+<p><input type="Submit" value="Submit"></p>
+</fieldset>
+</form>
+
+
 {% endblock content %}
