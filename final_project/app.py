@@ -28,7 +28,13 @@ def grocerystores():
 
 		json_results = []
 		for results in results:
-			d = {'STORE NAME'}
+			d = {'storeName': result.storeName,
+				'zipCode': result.zipCode, 
+				'communityName': result.communityName,
+				'latitude': result.latitude,
+				'longitude': result.longitude}
+			json_results.append(d)
+		return jsonify(items=json_results)
 
 if __name__ == '__main__':
     app.debug=True
