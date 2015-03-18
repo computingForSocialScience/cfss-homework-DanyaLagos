@@ -1,10 +1,11 @@
 from os.path import abspath, dirname, join
 
-from flask import flash, Flask, Markup, redirect, render_template, url_for
+from flask import Blueprint, flash, Flask, Markup, redirect, render_template, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.wtf import Form
 from wtforms import fields
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from .models import Site
 
 _cwd = dirname(abspath(__file__))
 
@@ -55,7 +56,7 @@ class VisitForm(Form):
     position = fields.StringField()
     url = fields.StringField()
     city = fields.StringField("City")
-    site = QuerySelectField(query_factory=Site.query.all)
+    site = QuerySelectField(query_factory=lambda: Site.query.all)
 
 
 class SiteForm(Form):
