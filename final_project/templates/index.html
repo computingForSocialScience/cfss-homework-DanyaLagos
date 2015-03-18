@@ -1,22 +1,26 @@
 {% extends "layout.html" %}
 {% import "helpers/forms.html" as forms %}
-{% block title %}Welcome to Flask Tracking!{% endblock %}
+{% block title %}Workers Like Us: A Directory of Trans and Genderqueer Independent Contractors{% endblock %}
 {% block content %}
 {{ super() }}
-<form action="/site" method="POST">
-<fieldset>
-<legend>Add A Site</legend>
-{{ forms.render(site_form) }}
-<p><input type="Submit" value="Save Site"></p>
-</fieldset>
-</form>
 
+<body>
+"Workers Like Us" is a voluntary directory of transgender and genderqueer independent contractors where you can list your name, contact information, and skills that you have so that people seeking to partner with or hire transgender and genderqueer workers can find you and contact you! Your contributions will also help give researchers conducting research on transgender employment trends to get a better picture of who in our community is working as independent contractors and what skillsets are most prevalent! Your participation and submissions to this directory will be public, and implies that you have read and consent to being listed and having this information shared with researchers and community partners.
+<p>
 
 <form action="/visit" method="POST">
 <fieldset>
 <legend>Add A Visit</legend>
 {{ forms.render(visit_form) }}
 <p><input type="Submit" value="Save Visit"></p>
+</fieldset>
+</form>
+
+<form action="/site" method="POST">
+<fieldset>
+<legend>Is your industry not listed? Add it to the directory here first, click Submit, and then refresh - your industry should then be listed!</legend>
+{{ forms.render(site_form) }}
+<p><input type="Submit" value="Submit."></p>
 </fieldset>
 </form>
 {% endblock content %}
